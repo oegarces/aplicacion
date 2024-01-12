@@ -1,5 +1,8 @@
 package co.com.bancolombia.api;
 
+import co.com.bancolombia.api.config.RouteProperties;
+import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -10,10 +13,14 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
+@RequiredArgsConstructor
+@EnableConfigurationProperties({RouteProperties.class})
 public class RouterRest {
+
+    private final RouteProperties routeProperties;
     @Bean
     public RouterFunction<ServerResponse> routerFunction(Handler handler) {
-        return route(GET("/api/v1/products"), handler::getProducts);
+        return route(GET(routeProperties.getProductsRoute()), handler::getProducts);
                // .andRoute(POST("/api/usecase/otherpath"), handler::listenPOSTUseCase)
                 //.and(route(GET("/api/otherusercase/path"), handler::listenGETOtherUseCase));
     }

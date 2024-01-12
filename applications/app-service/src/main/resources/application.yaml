@@ -1,26 +1,19 @@
 server:
   port: 8080
 spring:
+  webflux:
+    base-path: /api/v1/api
   application:
-    name: "aplicacion"
-  devtools:
-    add-properties: false
+    name: aplicacion
 
 adapter:
-  restconsumer:
+  rest-consumer:
     timeout: 5000
-    url: "https://api.escuelajs.co/api/v1"
+    base-url: https://api.escuelajs.co/api/v1
+    uri:
+      get-books: /products
 
-management:
-  health:
-    circuitbreakers:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "health,prometheus"
-  endpoint:
-    health:
-      probes:
-        enabled: true
-
+routes:
+  path-mapping:
+    api:
+      products-route: /products

@@ -17,9 +17,9 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 @Configuration
 public class RestConsumerConfig {
 
-    @Value("${adapter.restconsumer.url}")
+    @Value("${adapter.rest-consumer.base-url}")
     private String url;
-    @Value("${adapter.restconsumer.timeout}")
+    @Value("${adapter.rest-consumer.timeout}")
     private int timeout;
 
     @Bean
@@ -38,8 +38,7 @@ public class RestConsumerConfig {
                 .option(CONNECT_TIMEOUT_MILLIS, timeout)
                 .doOnConnected(connection -> {
                     connection.addHandlerLast(new ReadTimeoutHandler(timeout, MILLISECONDS));
-                    connection.addHandlerLast(new WriteTimeoutHandler(timeout, MILLISECONDS));
-                }));
+                    connection.addHandlerLast(new WriteTimeoutHandler(timeout, MILLISECONDS));}));
     }
 
 }
