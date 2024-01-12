@@ -5,6 +5,8 @@ buildscript {
 		sonarVersion = '4.2.1.3168'
 		jacocoVersion = '0.8.10'
         lombokVersion = '1.18.28'
+        log4j2Version = '2.21.0'
+        technicalLogVersion = '1.2.3'
 	}
 }
 

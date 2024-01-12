@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        maven { url "https://artifactory.apps.bancolombia.com/maven-bancolombia" }
         //mavenLocal()
         //maven { url '...' }
         gradlePluginPortal()
@@ -18,3 +19,5 @@ include ':rest-consumer'
 project(':rest-consumer').projectDir = file('./infrastructure/driven-adapters/rest-consumer')
 include ':reactive-web'
 project(':reactive-web').projectDir = file('./infrastructure/entry-points/reactive-web')
+include ':exception'
+project(':exception').projectDir = file('./infrastructure/helpers/exception')
