@@ -25,6 +25,7 @@ public class ExceptionRestConsumer {
     private final Map<String, BusinessException> businessExceptionMap;
     private final Map<String, TechnicalException> technicalExceptionMap;
 
+
     public ExceptionRestConsumer(ObjectMapper objectMapper, Map<String, BusinessException> businessExceptionMap,
                                  Map<String, TechnicalException> technicalExceptionMap) {
 

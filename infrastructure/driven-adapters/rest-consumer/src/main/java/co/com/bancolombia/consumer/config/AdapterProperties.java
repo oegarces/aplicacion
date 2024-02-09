@@ -11,5 +11,13 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "adapter.rest-consumer.uri")
 public class AdapterProperties {
         private String getBooks;
+        private Configuration configuration;
+
+        @Getter
+        @Setter
+        public static class Configuration{
+                private Long timeout;
+
+        }
 
 }

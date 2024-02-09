@@ -26,6 +26,7 @@ public class RestConsumer implements ProductGateway {
     private final AdapterProperties adapterProperties;
     private final ExceptionRestConsumer exceptionRestConsumer;
 
+
     @Override
     public Flux<Product> getProducts() {
         return client
@@ -34,7 +35,7 @@ public class RestConsumer implements ProductGateway {
                 .retrieve()
                 .bodyToFlux(ProductDTO.class)
                 .map(ProductHelper::getProduct)
-                .timeout(Duration.ofMillis(5000))
+                .timeout(Duration.ofMillis(adapterProperties.getConfiguration().getTimeout()))
                 .onErrorMap(TimeoutException.class, ex-> new TechnicalException((TechnicalErrorMessage.TECHNICAL_ERROR_TIMEOUT)))
                 .onErrorMap(WebClientRequestException.class, ex-> new TechnicalException((TechnicalErrorMessage.TECHNICAL_ERROR_UNKNOWN)))
                 .onErrorMap(WebClientResponseException.class, exceptionRestConsumer::getError);

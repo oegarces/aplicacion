@@ -12,6 +12,8 @@ adapter:
     base-url: http://localhost:3013
     uri:
       get-books: /products
+      configuration:
+        timeout: 5000
 
 routes:
   path-mapping:

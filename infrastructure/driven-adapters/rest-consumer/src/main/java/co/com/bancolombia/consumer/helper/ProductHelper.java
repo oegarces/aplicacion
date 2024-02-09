@@ -14,7 +14,7 @@ public class ProductHelper {
                 .description(productDTO.getDescription())
                 .price(productDTO.getPrice())
                 .images(productDTO.getImages())
-                .category(getCategory(productDTO.getCategory()))
+                .category(productDTO.getCategory()!=null ?getCategory(productDTO.getCategory()):null)
                 .build();
     }
     public static Category getCategory(ProductDTO.CategoryDTO categoryDTO){
